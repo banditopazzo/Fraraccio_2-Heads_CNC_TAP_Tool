@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Fraraccio CNC App </title>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" inline>
+  </head>
+  <body>
+    <div class='container' id="menu">
+      <div class='page-header'>
+        <img src="./assets/fraraccio-logo.png" alt="fraraccio-logo" style="width:25%;" inline>
+        <h1 style="display:inline-block;vertical-align: bottom;margin-left:1em">2-Heads CNC TAP Tool</h1>
+      </div>
+      <label>File 1: (Asse Z)</label><input type="file" id="File 1">
+      <br>
+      <label>File 2: (Asse A)</label><input type="file" id="File 2">
+      <br>
+      <label>File 3: (Asse Z - Opzionale)</label><input type="file" id="File 3">
+      <hr>
+      <button id='unisci-btn' class='btn btn-primary'>Unisci i file</button>
+    </div>
+    <div class='container' id='separatore'><hr></div>
+    <div class='container' id='preview'></div>
+    <script src="./js/index.js" inline></script>
+  </body>
+</html>
