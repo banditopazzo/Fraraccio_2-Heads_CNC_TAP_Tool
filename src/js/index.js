@@ -2,8 +2,6 @@
 var downloadBtn;
 var preview = document.getElementById('preview');
 var menu = document.getElementById("menu");
-var cambioEM = "M5 (spegne elettromandrino fine programma asse Z)\nG92X130 (offset asse X)\nG04P1000 (pausa 1 secondo)\nM10 (scambio rele su elettromandrino asse A)";
-var chiusura = "G1A30 (altezza di sicurezza)\nG0X0.000Y0.000 (punto X e Y in 0 con offset)\nG92X-130 (compensazione offset X per asse Z)\nG0X0.000Y0.000 (punto X e Y in 0 SENZA offset)\nM5 (spegne l'elettromandrino)\nG04P1000 (pausa in millisecondi , 1000 = 1 secondo)\nM11 (scambio relè su elettromandrino asse Z)\nM30 (chiusura programma)\n";
 
 function controllaCampiObbligatori(files){
   for (var i=0; i<2; i++){
@@ -47,10 +45,13 @@ function getDataFromFiles(files,callback) {
 }
 
 function operazioniSulTesto(data){
+  //Leggi valore di offset assi teste
+  var interasse_teste = document.getElementById('interasse_teste')
   //elabora 1st file
   var arr1 = data[0].split('\n');
   arr1[arr1.length - 2] = "(fine lavorazione asse Z)";
   var testo1 = arr1.join('\n');
+  var cambioEM = `M5 (spegne elettromandrino fine programma asse Z)\nG92X${interasse_teste} (offset asse X)\nG04P1000 (pausa 1 secondo)\nM10 (scambio rele su elettromandrino asse A)`;
   testo1 = testo1 + cambioEM;
   //elabora 2nd file
   //regex che cambia le Z con delle A
@@ -62,6 +63,7 @@ function operazioniSulTesto(data){
   arr2[arr2.length-4] = "";
   arr2[arr2.length-5] = "";
   testo2 = arr2.join('\n');
+  var chiusura = `G1A30 (altezza di sicurezza)\nG0X0.000Y0.000 (punto X e Y in 0 con offset)\nG92X-${interasse_teste} (compensazione offset X per asse Z)\nG0X0.000Y0.000 (punto X e Y in 0 SENZA offset)\nM5 (spegne l'elettromandrino)\nG04P1000 (pausa in millisecondi , 1000 = 1 secondo)\nM11 (scambio relè su elettromandrino asse Z)\nM30 (chiusura programma)\n`;
   testo2 = testo2 + chiusura;
   //crea testo totale
   var testoTotale = testo1 + '\n\n(inizio secondo file)\n\n' + testo2;
