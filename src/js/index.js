@@ -46,7 +46,7 @@ function getDataFromFiles(files,callback) {
 
 function operazioniSulTesto(data){
   //Leggi valore di offset assi teste
-  var interasse_teste = document.getElementById('interasse_teste')
+  var interasse_teste = document.getElementById('interasse_teste').value;
   //elabora 1st file
   var arr1 = data[0].split('\n');
   arr1[arr1.length - 2] = "(fine lavorazione asse Z)";
