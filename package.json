@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.html",
   "scripts": {
+    "gulp": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build",
     "build": "gulp inlinesource"
   },
   "author": "banditopazzo",
   "license": "MIT",
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
     "gulp": "^3.9.1",
     "gulp-inline-source": "^3.1.0"
   }
